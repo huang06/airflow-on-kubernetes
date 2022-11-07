@@ -1,0 +1,28 @@
+---
+defaultAirflowRepository: "docker.io/apache/airflow"
+defaultAirflowTag: "2.4.1-python3.10"
+airflowVersion: "2.4.1"
+
+executor: "KubernetesExecutor"
+
+dags:
+  persistence:
+    enabled: true
+    existingClaim: airflow-dags
+  gitSync:
+    enabled: false
+
+ingress:
+  web:
+    enabled: true
+    hosts:
+      - "airflow.k3s-demo"
+
+logs:
+  persistence:
+    enabled: true
+    existingClaim: airflow-logs
+
+extraEnv: |
+  - name: AIRFLOW__CORE__LOAD_EXAMPLES
+    value: "True"
