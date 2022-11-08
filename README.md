@@ -1,7 +1,5 @@
 # Airflow On Kubernetes
 
-TBD
-
 ## Run with Kubernetes Executor
 
 ```bash
