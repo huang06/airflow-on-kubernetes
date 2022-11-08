@@ -8,7 +8,7 @@ spec:
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -27,7 +27,7 @@ spec:
   storageClassName: local-path
   volumeName: airflow-dags
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   resources:
     requests:
       storage: 1Gi
@@ -41,7 +41,7 @@ spec:
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -60,7 +60,7 @@ spec:
   storageClassName: local-path
   volumeName: airflow-logs
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
