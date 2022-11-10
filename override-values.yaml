@@ -5,6 +5,10 @@ airflowVersion: "2.4.1"
 
 executor: "KubernetesExecutor"
 
+# The Flask secret key for Airflow Webserver to encrypt browser session.
+# python3 -c 'import secrets; print(secrets.token_hex(16))'
+webserverSecretKey: eea66b80fd055e0a30e2ca2e6c278ddc
+
 dags:
   persistence:
     enabled: true
