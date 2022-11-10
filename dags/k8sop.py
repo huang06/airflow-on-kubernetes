@@ -1,31 +1,19 @@
-from datetime import datetime, timedelta
+import pendulum
 from airflow import DAG
 from airflow.configuration import conf
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
-default_args = {
-    "owner": "airflow",
-    "depends_on_past": False,
-    "start_date": datetime(2022, 1, 1),
-    "email_on_failure": False,
-    "email_on_retry": False,
-    "retries": 1,
-    "retry_delay": timedelta(minutes=5),
-}
-
 with DAG(
-    dag_id="example_kubernetes_pod", 
-    schedule="@once", 
-    default_args=default_args
+    dag_id="example_k8spod", 
+    start_date=pendulum.datetime(2022, 11, 10, tz="UTC"),
+    schedule=None, 
 ) as dag:
     KubernetesPodOperator(
+        name="k8spod",
+        task_id="k8spod",
         namespace="airflow",
         image="hello-world",
-        name="airflow-test-pod",
-        task_id="task-one",
         in_cluster=True, 
-        cluster_context="docker-desktop", 
-        config_file=None,
         is_delete_operator_pod=True,
         get_logs=True,
     )
